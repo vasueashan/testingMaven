@@ -39,9 +39,8 @@ public class loginTestPage extends baseFactotyPage {
 		utiltyPage.enterTextValue(loginSectionPage.login_UserName_Id, globalPage.getData("UserName"));
 		utiltyPage.enterTextValue(loginSectionPage.login_Password_Id, globalPage.getData("PassWord"));
 		utiltyPage.click(loginSectionPage.login_Login_Id);
-		//Thread.sleep(2000);
 		Assert.assertEquals(utiltyPage.getTittle(), "Swag Labs");
-		//Thread.sleep(2000);		
+
 	}
 
 	// Tesct case-2: Check login Application with invalid credential
@@ -51,12 +50,11 @@ public class loginTestPage extends baseFactotyPage {
 		String expectedErrorMsg = "Epic sadface: Username and password do not match any user in this service";
 
 		utiltyPage.enterTextValue(loginSectionPage.login_UserName_Id, globalPage.getData("UserName"));
-		utiltyPage.enterTextValue(loginSectionPage.login_Password_Id, globalPage.getData("PassWord")+1);
+		utiltyPage.enterTextValue(loginSectionPage.login_Password_Id, globalPage.getData("PassWord") + 1);
 		utiltyPage.click(loginSectionPage.login_Login_Id);
-		//Thread.sleep(2000);
 		String actualErrorMsg = utiltyPage.getText(loginSectionPage.login_errorMsg_h3);
 		Assert.assertEquals(actualErrorMsg, expectedErrorMsg);
-		//Thread.sleep(2000);		
+
 	}
 
 	// Tesct case-3: Check logout validation
@@ -68,13 +66,12 @@ public class loginTestPage extends baseFactotyPage {
 		utiltyPage.enterTextValue(loginSectionPage.login_UserName_Id, globalPage.getData("UserName"));
 		utiltyPage.enterTextValue(loginSectionPage.login_Password_Id, globalPage.getData("PassWord"));
 		utiltyPage.click(loginSectionPage.login_Login_Id);
-		Thread.sleep(2000);
+		globalPage.waitForElement(homeMenuPage.homePage_Menu_Id);
 		Assert.assertEquals(utiltyPage.getTittle(), "Swag Labs");
-		//Thread.sleep(1000);
 		utiltyPage.click(homeMenuPage.homePage_Menu_Id);
-		Thread.sleep(1000);
+		globalPage.waitForElement(homeMenuPage.homePage_logout_Id);
 		utiltyPage.click(homeMenuPage.homePage_logout_Id);
-		//Thread.sleep(1000);		
+
 	}
 
 	// Tesct case-4: Check Add to cart and remove Validation
@@ -85,18 +82,15 @@ public class loginTestPage extends baseFactotyPage {
 		utiltyPage.enterTextValue(loginSectionPage.login_UserName_Id, globalPage.getData("UserName"));
 		utiltyPage.enterTextValue(loginSectionPage.login_Password_Id, globalPage.getData("PassWord"));
 		utiltyPage.click(loginSectionPage.login_Login_Id);
-		//Thread.sleep(1000);
 		utiltyPage.click(homeMenuPage.homePage_AddtoCort_id);
-		Thread.sleep(1000);
-		String getPrice = utiltyPage.getText(homeMenuPage.homePage_Pricebar);		
+		String getPrice = utiltyPage.getText(homeMenuPage.homePage_Pricebar);
 		utiltyPage.click(homeMenuPage.homePage_shopping_cart_link);
-		Thread.sleep(2000);
 		String expgetPrice = utiltyPage.getText(homeMenuPage.homePage_Pricebar);
 		Assert.assertEquals(expgetPrice, getPrice);
-		//Thread.sleep(1000);		
+
 	}
 
-	// Tesct case-5:  Remove Item from Add to cart box  Validation
+	// Tesct case-5: Remove Item from Add to cart box Validation
 
 	@Test
 	public void TC_004_Remove_AddToCart_Validation() throws InterruptedException, IOException {
@@ -104,13 +98,10 @@ public class loginTestPage extends baseFactotyPage {
 		utiltyPage.enterTextValue(loginSectionPage.login_UserName_Id, globalPage.getData("UserName"));
 		utiltyPage.enterTextValue(loginSectionPage.login_Password_Id, globalPage.getData("PassWord"));
 		utiltyPage.click(loginSectionPage.login_Login_Id);
-		//Thread.sleep(1000);
 		utiltyPage.click(homeMenuPage.homePage_AddtoCort_id);
-		//Thread.sleep(1000);		
 		utiltyPage.click(homeMenuPage.homePage_shopping_cart_link);
-		//Thread.sleep(2000);
 		utiltyPage.click(homeMenuPage.homePage_Remove_Id);
-		//Thread.sleep(2000);		
+
 	}
 
 }
